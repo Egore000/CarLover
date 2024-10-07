@@ -1,3 +1,4 @@
+from typing import Iterable
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
@@ -45,6 +46,8 @@ class Car(models.Model):
     class Meta:
         ordering = ['make', '-created_at']
         db_table = 'cars'
+        verbose_name = _('Автомобиль')
+        verbose_name_plural = _('Автомобили')
     
     def __str__(self):
         return f'{self.make} {self.model} ({self.year})'
@@ -77,3 +80,6 @@ class Comment(models.Model):
     class Meta:
         ordering = ['-created_at']
         db_table = 'comments'
+        verbose_name = _('Комментарий')
+        verbose_name_plural = _('Комментарии')
+    

@@ -1,6 +1,7 @@
 from typing import Any
 from django.db.models.base import Model as Model
 from django.db.models.query import QuerySet
+from django.forms import BaseModelForm
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -35,6 +36,11 @@ class CarsCreateView(LoginRequiredMixin, CreateView):
     form_class = forms.CarCreationForm
     success_url = reverse_lazy('cars:list')
     template_name = 'cars/add_new.html'
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        car = form.save(commit=False)
+        car.owner = self.request.user
+        return super().form_valid(form)
 
 
 class CarsUpdateView(PermissionRequiredMixin, UpdateView):
