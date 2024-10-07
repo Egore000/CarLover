@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Список автомобилей{% endblock %}
+
+{% block content %}
+    <div class="cars">
+        {% for car in cars %}
+            <p>{{ car }}</p>
+        {% endfor %}
+    </div>
+{% endblock %}

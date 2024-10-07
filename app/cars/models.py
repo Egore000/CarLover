@@ -1,37 +1,45 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.translation import gettext_lazy as _
 
 
 class Car(models.Model):
     """Информация об автомобиле"""
 
     make = models.CharField(
-        'Марка автомобиля',
+        verbose_name=_('Марка автомобиля'),
         null=False,
         max_length=255,
     )
     model = models.CharField(
-        verbose_name='Модель автомобиля',
+        verbose_name=_('Модель автомобиля'),
         null=False,
         max_length=255,
     )
     year = models.IntegerField(
-        verbose_name='Год выпуска',
+        verbose_name=_('Год выпуска'),
         blank=True,
         null=True,
     )
     description = models.TextField(
-        verbose_name='Описание автомобиля',
+        verbose_name=_('Описание автомобиля'),
         blank=True,
         null=True,
     )
     created_at = models.DateTimeField(
-        verbose_name='Дата создания',
+        verbose_name=_('Дата создания'),
         auto_now_add=True,
     )
     updated_at = models.DateTimeField(
-        verbose_name='Дата обновления',
+        verbose_name=_('Дата обновления'),
         auto_now=True,
+    )
+    owner = models.ForeignKey(
+        verbose_name=_('Владелец'),
+        to=User,
+        on_delete=models.CASCADE,
+        related_name='owners',
+        null=False,
     )
 
     class Meta:
@@ -46,21 +54,21 @@ class Comment(models.Model):
     """Комментарий пользователя об автомобиле"""
 
     content = models.TextField(
-        verbose_name='Текст',
+        verbose_name=_('Текст'),
         null=False,
     )
     created_at = models.DateTimeField(
-        verbose_name='Дата и время создания комментария',
+        verbose_name=_('Дата и время создания комментария'),
         auto_now_add=True,
     )
     car = models.ForeignKey(
-        verbose_name='Автомобиль',
+        verbose_name=_('Автомобиль'),
         to='Car',
         on_delete=models.CASCADE,
         related_name='comments',
     )
     author = models.ForeignKey(
-        verbose_name='Автор комментария',
+        verbose_name=_('Автор комментария'),
         to=User,
         on_delete=models.CASCADE,
         related_name='comments',
