@@ -34,6 +34,13 @@ class Car(models.Model):
         verbose_name=_('Дата обновления'),
         auto_now=True,
     )
+    owner = models.ForeignKey(
+        verbose_name=_('Владелец'),
+        to=User,
+        on_delete=models.CASCADE,
+        related_name='owners',
+        null=False,
+    )
 
     class Meta:
         ordering = ['make', '-created_at']
