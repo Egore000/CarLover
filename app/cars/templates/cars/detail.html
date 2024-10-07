@@ -8,16 +8,37 @@
             <a href="{% url 'cars:edit' pk=car.id %}">Изменить</a>
         {% endif %}
     </div>
-    <div>
-        {{ car }}
+    <div class="car_info">
+        <div class="car_make">
+            {{ car.make }}
+        </div>
+        <div class="car_model">
+            {{ car.model }}
+        </div>
+        <div class="car_year">
+            {{ car.year}}
+        </div>
+        <div class="car_description">
+            {{ car.description }} 
+        </div>
     </div>
     <div class="comments">
+        <h2>Комментарии</h2>
         {% for comment in car.comments.all %}
             <div class="comment">
-                {{ comment.author }}
+                <div class="author">
+                    {{ comment.author }}
+                </div>
                 ---
-                {{ comment.content }}
+                <div class="content">
+                    {{ comment.content|linebreaks }}
+                </div>
             </div>
+        {% empty %}
+            <p>Нет Комментариев</p>
         {% endfor %}
+        <div class="new_comment">
+            {% include 'cars/include/comment_form.html' %}
+        </div>
     </div>
 {% endblock %}
