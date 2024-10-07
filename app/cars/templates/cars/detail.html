@@ -4,11 +4,20 @@
 
 {% block content %}
     <div>
+        {% if request.user == car.owner %}
+            <a href="{% url 'cars:edit' pk=car.id %}">Изменить</a>
+        {% endif %}
+    </div>
+    <div>
         {{ car }}
     </div>
-    <div class="comment">
+    <div class="comments">
         {% for comment in car.comments.all %}
-            {{ comment }}
+            <div class="comment">
+                {{ comment.author }}
+                ---
+                {{ comment.content }}
+            </div>
         {% endfor %}
     </div>
 {% endblock %}
