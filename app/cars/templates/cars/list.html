@@ -5,7 +5,9 @@
 {% block content %}
     <div class="cars">
         {% for car in cars %}
-            <p>{{ car }}</p>
+            <a href="{{ car.get_absolute_url }}">
+                <div>{{ car }}</div>
+            </a>
         {% endfor %}
     </div>
 {% endblock %}
