@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Список автомобилей{% endblock %}
+
+{% block content %}
+    <div>
+        {{ car }}
+    </div>
+    <div class="comment">
+        {% for comment in car.comments.all %}
+            {{ comment }}
+        {% endfor %}
+    </div>
+{% endblock %}

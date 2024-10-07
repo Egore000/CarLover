@@ -11,7 +11,7 @@
             {% if request.user.is_authenticated %}
                 <ul class="menu">
                     <li {% if section == "home" %}class="selected"{% endif %}>
-                        <a href="{% url 'cars:home' %}">Мои авто</a>
+                        <a href="{% url 'cars:list' %}">Список авто</a>
                     </li>
                 </ul>
             {% endif %}
