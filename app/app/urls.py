@@ -26,9 +26,9 @@ urlpatterns = [
     path('account/', include('account.urls', namespace='account')),
 
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
-    path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
-    path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
 
     path('cars/', include('cars.urls', namespace='cars')),
-    # path('api/cars/', include('cars.urls', namespace='cars')),
+    path('api/', include('cars.api.urls', namespace='api')),
 ]

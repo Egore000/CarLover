@@ -10,5 +10,6 @@ urlpatterns = [
     path('create/', views.CarsCreateView.as_view(), name='create'),
     path('edit/<int:pk>', views.CarsUpdateView.as_view(), name='edit'),
     path('<int:pk>/comment', views.post_comment, name='post_comment'),
-    path('my_cars/', views.UserCarsListView.as_view(), name='my_cars_list'),
+    path('my/', views.UserCarsListView.as_view(), name='my_cars_list'),
 ]
+
