@@ -25,18 +25,17 @@ class CarsSerializer(serializers.ModelSerializer):
         return year
 
 
-class CommentSerializer(serializers.ModelSerializer):
-    """Сериализатор комментариев"""
+class CommentGETSerializer(serializers.ModelSerializer):
+    """Сериализатор для получения комментариев"""
 
     class Meta:
         model = models.Comment
         fields = ('id', 'content', 'car', 'author')
 
 
-class CommentPOSTSerializer(serializers.Serializer):
-    """Сериализатор для добавления комментария"""
+class CommentPOSTSerializer(serializers.ModelSerializer):
+    """Сериализатор для добавления комментариев"""
 
-    content = serializers.CharField(required=False, default='')
-
-    def create(self, validated_data):
-        return models.Comment.objects.create(**validated_data)
+    class Meta:
+        model = models.Comment
+        fields = ('content', )

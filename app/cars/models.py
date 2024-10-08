@@ -18,7 +18,7 @@ class Car(models.Model):
         null=False,
         max_length=255,
     )
-    year = models.IntegerField(
+    year = models.SmallIntegerField(
         verbose_name=_('Год выпуска'),
         blank=True,
         null=True,
