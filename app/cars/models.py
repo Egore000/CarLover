@@ -51,8 +51,10 @@ class Car(models.Model):
         verbose_name_plural = _('Автомобили')
     
     def __str__(self):
-        return f'{self.make} {self.model} ({self.year})'
-    
+        if self.year is not None:
+            return f'{self.make} {self.model} ({self.year})'
+        return f'{self.make} {self.model}'
+
     def get_absolute_url(self):
         return reverse('cars:detail', kwargs={'pk': self.id})
 

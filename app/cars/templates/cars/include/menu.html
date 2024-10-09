@@ -1,12 +1,28 @@
-<div class="menu">
-    <a href="{% url 'cars:my_cars_list' %}">
-        <div class="my_cars">
-            Мои авто
-        </div>
-    </a>
-    <a href="{% url 'cars:list' %}">
-        <div class="cars_list">
-            Все авто
-        </div>
-    </a>
-</div>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/menu.css' %}">
+<ul class="menu">
+    <li>
+        <a href="{% url 'cars:my_cars_list' %}">
+            <div class="button" id="garage">
+                <img src="{% static 'img/garage.svg' %} " alt="">
+                <span class="label">Мои авто</span>
+            </div>
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'cars:list' %}">
+            <div class="button" id="list">
+                <span><img src="{% static 'img/car.svg' %} " alt=""></span>
+                <span class="label">Все авто</span>
+            </div>
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'account:login' %}">
+            <div class="button" id="list">
+                <span><img src="{% static 'img/login.svg' %} " alt=""></span>
+                <span class="label">Войти</span>
+            </div>
+        </a>
+    </li>
+</ul>
