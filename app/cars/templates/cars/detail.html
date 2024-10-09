@@ -1,36 +1,45 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %}Список автомобилей{% endblock %}
 
 {% block content %}
-    <div>
-        {% if request.user == car.owner %}
-            <a href="{% url 'cars:edit' pk=car.id %}">Изменить</a>
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+    <div class="change">
+        {% if user == car.owner %}
+            <a href="{% url 'cars:edit' pk=car.id %}">
+                <div class="button">
+                    <span><img src="{% static 'img/edit.svg' %}" alt=""></span>
+                    <span class="label">Изменить</span>
+                </div>
+            </a>
         {% endif %}
     </div>
     <div class="car_info">
         <div class="car_make">
-            {{ car.make }}
+            <span class="label">Марка: </span>
+            <span class="data">{{ car.make }}</span>
         </div>
         <div class="car_model">
-            {{ car.model }}
+            <span class="label">Модель: </span>
+            <span class="data">{{ car.model }}</span>
         </div>
         <div class="car_year">
-            {{ car.year}}
+            <span class="label">Год выпуска: </span>
+            <span class="data">{{ car.year }}</span>
         </div>
         <div class="car_description">
-            {{ car.description }} 
+            <span class="label">Описание: </span>
+            <span class="data">{{ car.description }}</span>
         </div>
     </div>
     <div class="comments">
         <h2>Комментарии</h2>
         {% for comment in car.comments.all %}
             <div class="comment">
-                <div class="author">
-                    {{ comment.author }}
-                </div>
-                ---
-                <div class="content">
+                <div class="label" id="author">{{ comment.author }}</div>
+                <div class="comment_content">
                     {{ comment.content|linebreaks }}
                 </div>
             </div>

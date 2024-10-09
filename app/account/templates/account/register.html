@@ -3,11 +3,15 @@
 {% block title %}Создать аккаунт{% endblock %}
 
 {% block content %}
-    <h1>Регистрация</h1>
-    <p>Для создания аккаунта заполните форму:</p>
-    <form method="post">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <p><input type="submit" value="Создать аккаунт"></p>
-    </form>
+    <div class="card">
+        <h1>Регистрация</h1>
+        <div class="login-form">
+            <form action="{% url 'account:register' %}" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+            <input type="hidden" name="next" value="{{ next }}" />
+            <button type="submit">Зарегистрироваться</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}

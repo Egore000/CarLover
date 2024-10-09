@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
 <div>
     <form action="{% url 'cars:create' %}" method="post">
         {{ form.as_p }}
         {% csrf_token %}
-        <p><input type="submit" value="Создать"></p>
+        <button type="submit">{{ button }}</button>
     </form>
 </div>
 {% endblock %}
