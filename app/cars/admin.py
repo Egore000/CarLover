@@ -9,4 +9,4 @@ class CarAdmin(admin.ModelAdmin):
 
 @admin.register(models.Comment)
 class CommentAdmin(admin.ModelAdmin):
-    fields = ('content', 'car', 'author')
+    list_display = ('content', 'car', 'author')
