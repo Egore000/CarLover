@@ -1,0 +1,31 @@
+.car_info {
+    width: 600px;
+    height: 300px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 20px #aaa;
+    padding: 20px;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.data {
+    text-align: center;
+}
+
+.comment {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 5px 5px 20px #aaa;
+    text-align: center;
+}
+
+.comment #author {
+    background-color: #201d35;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    border-radius: 10px 10px 0px 0px;
+    color: #f3f3f3;
+}

@@ -1,7 +1,10 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/comment.css' %}">
 <div class="new_comment">
     <form action="{% url 'cars:post_comment' pk=car.id %}" method="post">
         {{ form.as_p }}
         {% csrf_token %}
-        <p><input type="submit" value="Отправить"></p>
+        <button type="submit">Отправить</button>
     </form>
 </div>

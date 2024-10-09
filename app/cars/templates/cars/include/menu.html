@@ -17,12 +17,23 @@
             </div>
         </a>
     </li>
-    <li>
-        <a href="{% url 'account:login' %}">
-            <div class="button" id="list">
-                <span><img src="{% static 'img/login.svg' %} " alt=""></span>
-                <span class="label">Войти</span>
-            </div>
-        </a>
-    </li>
+    {% if not user.is_authenticated %}
+        <li>
+            <a href="{% url 'account:login' %}">
+                <div class="button" id="list">
+                    <span><img src="{% static 'img/login.svg' %} " alt=""></span>
+                    <span class="label">Войти</span>
+                </div>
+            </a>
+        </li>
+    {% else %}
+        <li>
+            <a href="{% url 'account:login' %}">
+                <div class="button" id="list">
+                    <span><img src="{% static 'img/user.svg' %} " alt=""></span>
+                    <span class="label">{{ user }}</span>
+                </div>
+            </a>
+        </li>
+    {% endif %}
 </ul>
