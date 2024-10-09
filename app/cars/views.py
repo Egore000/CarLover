@@ -41,7 +41,7 @@ class CarsCreateView(LoginRequiredMixin, CreateView, ContextMixin):
     form_class = forms.CarCreationForm
     success_url = reverse_lazy('cars:list')
     template_name = 'cars/add_new.html'
-    extra_context = {'title': 'Добавить авто'}
+    extra_context = {'title': 'Добавить авто', 'button': 'Создать'}
 
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
         car = form.save(commit=False)
@@ -56,7 +56,7 @@ class CarsUpdateView(PermissionRequiredMixin, UpdateView, ContextMixin):
     fields = ('make', 'model', 'year', 'description')
     template_name = 'cars/add_new.html'
     success_url = reverse_lazy('cars:list')
-    extra_context = {'title': 'Изменение авто'}
+    extra_context = {'title': 'Изменение авто', 'button': 'Изменить'}
     
     def has_permission(self) -> bool:
         obj = self.get_object()
