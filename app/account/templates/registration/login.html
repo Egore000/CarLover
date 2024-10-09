@@ -3,21 +3,25 @@
 {% block title %}Log-in{% endblock %}
 
 {% block content %}
-    <h1>Вход</h1>
-    {% if form.errors %}
-        <p>
-        Неверноое имя пользователя или пароль.
-        Попробуйте снова.
-        </p>
-    {% else %}
-        <p>Введите логин и пароль:</p>
-    {% endif %}
-    <div class="login-form">
-        <form action="{% url 'account:login' %}" method="post">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ next }}" />
-        <p><input type="submit" value="Войти"></p>
-        </form>
+    <div class="card">
+        <h1>Вход</h1>
+        <div class="errorWrapper">
+        {% if form.errors %}
+            <p class="error">Неверное имя пользователя или пароль</p>
+        {% endif %}
+        </div>
+        <div class="login-form">
+            <form action="{% url 'account:login' %}" method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="fieldWrapper">
+                    {{ field.label_tag }} {{ field }}
+                </div>
+                {% endfor %}
+            <input type="hidden" name="next" value="{{ next }}" />
+            <button type="submit">Войти</button>
+            </form>
+        </div>
+        <a href="{% url 'account:register' %}">Регистрация</a>
     </div>
 {% endblock %}
