@@ -11,14 +11,14 @@ services:
     ports:
       - 8000:8000
     env_file:
-      - .env
+      - .env.test
     depends_on:
       - database
     
   database:
     image: postgres
     env_file:
-      - .env
+      - .env.test
     container_name: database
     volumes:
       - dbdata:/var/lib/postgresql/data
