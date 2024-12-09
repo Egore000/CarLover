@@ -1,9 +1,10 @@
 from rest_framework import permissions, viewsets, views, status
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticatedOrReadOnly 
 from rest_framework.request import HttpRequest
 
 from cars import models
-from cars.api import serializers
+from cars.api import serializers, permissions
 from cars.api.swagger import Swagger
 
 
@@ -16,7 +17,7 @@ class CarsViewSet(viewsets.ModelViewSet):
 
     queryset = models.Car.objects.all()
     serializer_class = serializers.CarsSerializer
-    permission_classes = (permissions.IsAuthenticated, )
+    permission_classes = (IsAuthenticatedOrReadOnly, permissions.IsCarOwnerOrReadOnly, )
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -24,6 +25,8 @@ class CarsViewSet(viewsets.ModelViewSet):
 
 class CommentsAPIView(views.APIView):
     """Представление для обработки запросов на комментарии"""
+
+    permission_classes = (IsAuthenticatedOrReadOnly, permissions.IsCommentAuthorOrReadOnly, )
 
     @Swagger.get_comment
     def get(self, request: HttpRequest, car_id: int) -> Response:

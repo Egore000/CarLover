@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpRequest 
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.contrib.auth.models import User
 
 from . import forms
@@ -17,6 +17,7 @@ def register(request: HttpRequest) -> HttpResponse:
             user.set_password(
                 form.cleaned_data.get('password')
             )
+            user.save()
 
             return render(request, 
                           'account/register_done.html',

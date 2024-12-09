@@ -28,6 +28,10 @@ h1 {
     color: #2f232d;
 }
 
+h1.welcome {
+    color: #ddd;
+}
+
 label {
     display: block;
     width: 100%;
@@ -83,4 +87,13 @@ button {
 a {
     color: #2f232d;
     text-decoration: none;
+}
+
+a.login {
+    color: #555;
+    text-decoration: none;
+}
+
+p {
+    color: #ddd; 
 }

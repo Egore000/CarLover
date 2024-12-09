@@ -7,7 +7,7 @@ from cars.api import serializers
 
 class Swagger:
     """
-    Подключение swagger к проекту и обобрачивание представлений в 
+    Подключение swagger к проекту и обертка представлений в 
     декораторы
     """
 
@@ -27,7 +27,7 @@ class Swagger:
                 description=_("Добавление информации об автомобиле."),
                 responses={
                     201: OpenApiResponse(description=_("Создано успешно")),
-                    401: OpenApiResponse(description=_("Ошибки валидации")),
+                    401: OpenApiResponse(description=_("Ошибка авторизации")),
                 }
             ),
             retrieve=extend_schema(
@@ -45,13 +45,20 @@ class Swagger:
             ),
             partial_update=extend_schema(
                 description=_("Частичное изменение информации об автомобиле."),
+                responses={
+                    204: OpenApiResponse(description=_("Информация изменена")),
+                    400: OpenApiResponse(description=_("ID автомобиля не предоставлен")),
+                    401: OpenApiResponse(description=_("Ошибка авторизации")),
+                    404: OpenApiResponse(description=_("Автомобиль не найден")),
+                },
             ),
             destroy=extend_schema(
                 description=_("Удаление информации об автомобиле."),
                 responses={
                     200: OpenApiResponse(description=_("Автомобиль успешно удалён")),
+                    400: OpenApiResponse(description=_("ID автомобиля не предоставлен")),
+                    401: OpenApiResponse(description=_("Ошибка авторизации")),
                     404: OpenApiResponse(description=_("Автомобиль не найден")),
-                    400: OpenApiResponse(description=_("ID автомобиля не предоставлен"))
                 }
             )
         )(extended)
@@ -78,6 +85,7 @@ class Swagger:
                     response=serializers.CommentPOSTSerializer, 
                     description=_("Комментарий добавлен")
                 ),
-                400: OpenApiResponse(description=_("Ошибки валидации"))
+                400: OpenApiResponse(description=_("Ошибки валидации")),
+                401: OpenApiResponse(description=_("Ошибка авторизации")),
             }
         )(extended)

@@ -1,27 +1,29 @@
-version: '1'
+version: '3.0'
 
 services:
-  django:
+  main-app:
     build:
       context: .
-    container_name: django
+      dockerfile: Dockerfile
+    container_name: main-app
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./app:/app
+      - ./data:/data:ro
     ports:
       - 8000:8000
     env_file:
-      - .env.test
+      - ./.env.test
     depends_on:
       - database
     
   database:
     image: postgres
     env_file:
-      - .env.test
+      - ./.env.test
     container_name: database
     volumes:
       - dbdata:/var/lib/postgresql/data
     
 volumes:
-  dbdata: null
+  dbdata:

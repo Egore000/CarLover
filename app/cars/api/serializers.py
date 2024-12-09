@@ -13,7 +13,7 @@ class CarsSerializer(serializers.ModelSerializer):
         model = models.Car
         fields = ('id', 'make', 'model', 'year', 'description', 'created_at', 'updated_at')
 
-    def validate_year(self, year: Any):
+    def validate_year(self, year: Any) -> int:
         """Валидация входного значения года"""
         
         if not isinstance(year, int):
