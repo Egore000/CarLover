@@ -16,11 +16,11 @@ up:
 
 .PHONY: migrate
 migrate:
-	${DC} -f ${APP_FILE} ${ENV} run ${APP_CONTAINER} python manage.py migrate
+	${DC} -f ${APP_FILE} ${ENV} run --rm ${APP_CONTAINER} python manage.py migrate
 
 .PHONY: superuser
 superuser:
-	${DC} -f ${APP_FILE} ${ENV} run ${APP_CONTAINER} python manage.py createsuperuser
+	${DC} -f ${APP_FILE} ${ENV} run --rm ${APP_CONTAINER} python manage.py createsuperuser
 
 .PHONY: down
 down:
